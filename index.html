@@ -1,181 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle Clean Services - Professional Cleaning Solutions</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #007acc;
+            --success: #28a745;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #333;
+            --text-light: #666;
+        }
 
-  <title>ConextSol | Web Development & Automation Services in South Africa</title>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.7; 
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-  <!-- SEO -->
-  <meta name="description" content="ConextSol provides professional web development, automation, and AI-ready digital solutions for businesses across South Africa. Based locally, serving nationally.">
-  <meta name="keywords" content="web development South Africa, automation services, website designer, AI solutions">
-  <meta name="author" content="Tashreeq Jones">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* Header */
+        header { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            color: var(--text-dark); 
+            padding: 1rem 0; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 2.5rem; }
+        nav ul li a { 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-weight: 600; 
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after { width: 100%; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="ConextSol">
-  <meta property="og:description" content="From concept to code – building scalable digital solutions.">
-  <meta property="og:type" content="website">
+        /* Hero */
+        .hero { 
+            background: linear-gradient(135deg, rgba(74,144,226,0.9), rgba(0,122,204,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800"><defs><radialGradient id="a" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.3"/><stop offset="100%" stop-color="%23e3f2fd" stop-opacity="0.1"/></radialGradient></defs><rect fill="%23f0f8ff" width="1600" height="800"/><circle fill="url(%23a)" cx="300" cy="200" r="200"/><circle fill="url(%23a)" cx="1300" cy="500" r="250"/><rect fill="%23e8f5e8" x="600" y="550" width="400" height="150" rx="20"/></svg>');
+            background-size: cover; 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            text-align: center; 
+            color: white; 
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .hero-content { position: relative; z-index: 2; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1.5rem; font-weight: 800; }
+        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn { 
+            background: var(--success); 
+            color: white; 
+            padding: 1.2rem 3rem; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 1.1rem;
+            display: inline-block; 
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(40,167,69,0.4); }
 
-  <!-- Google Analytics (PLACEHOLDER) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
+        /* Sections */
+        section { padding: 100px 0; }
+        h2 { font-size: 3rem; text-align: center; margin-bottom: 1rem; font-weight: 700; }
+        .subtitle { text-align: center; font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto 4rem; }
+        
+        #services { background: var(--light-bg); }
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 3rem; 
+        }
+        .service-card { 
+            background: var(--white); 
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            text-align: center; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        .service-card:hover { 
+            transform: translateY(-20px) scale(1.02); 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+        .service-icon { 
+            font-size: 4rem; 
+            margin-bottom: 1.5rem; 
+            display: block;
+            animation: bounceIn 0.6s ease;
+        }
 
-  <!-- Local Business Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ConextSol",
-    "url": "https://yourdomain.com",
-    "description": "Web development, automation and AI-ready digital solutions for businesses across South Africa.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "ZA"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "South Africa"
-    },
-    "sameAs": [
-      "https://www.instagram.com/",
-      "https://www.tiktok.com/"
-    ]
-  }
-  </script>
+        /* Stats Section */
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 2rem; 
+            margin: 5rem auto; 
+            text-align: center;
+            max-width: 800px;
+        }
+        .stat { 
+            animation: countUp 1s ease forwards;
+            opacity: 0;
+        }
+        .stat-number { font-size: 3rem; font-weight: 800; color: var(--primary); display: block; }
+        .stat-label { color: var(--text-light); font-size: 1.1rem; }
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        /* About */
+        #about { background: var(--white); position: relative; }
+        .about-content { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .about-image { 
+            height: 400px; 
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb); 
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-image::before {
+            content: '⟳';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: rgba(255,255,255,0.3);
+        }
 
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- Botpress Webchat -->
-<script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+        /* Testimonials */
+        .testimonials-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 3rem;
+        }
+        .testimonial { 
+            background: var(--light-bg); 
+            padding: 2.5rem; 
+            border-radius: 15px; 
+            text-align: center;
+            position: relative;
+        }
+        .testimonial::before {
+            content: '★';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #ffd700;
+        }
 
-  
+        /* Contact */
+        #contact { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            text-align: center; 
+        }
+        #contact form { 
+            max-width: 700px; 
+            margin: 3rem auto 0; 
+            background: rgba(255,255,255,0.1); 
+            padding: 3rem; 
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        #contact input, #contact textarea { 
+            width: 100%; 
+            padding: 1.2rem; 
+            margin-bottom: 1.5rem; 
+            border: 2px solid rgba(255,255,255,0.2); 
+            border-radius: 10px; 
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        #contact input:focus, #contact textarea:focus {
+            outline: none;
+            border-color: var(--success);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            background: #25d366; 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 8px 25px rgba(37,211,102,0.4); 
+            z-index: 1001; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-btn:hover { 
+            transform: scale(1.15) translateY(-5px); 
+            box-shadow: 0 15px 35px rgba(37,211,102,0.5);
+        }
+        @keyframes pulse { 
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 
+            70% { box-shadow: 0 0 0 25px rgba(37,211,102,0); } 
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } 
+        }
+
+        /* Footer */
+        footer { 
+            background: #1a1a1a; 
+            color: #ccc; 
+            padding: 4rem 0 2rem; 
+            text-align: center;
+        }
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2rem; 
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 { 
+            color: white; 
+            margin-bottom: 1rem; 
+            font-size: 1.3rem;
+        }
+        .footer-section a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--primary); }
+        .footer-bottom { 
+            border-top: 1px solid #333; 
+            padding-top: 2rem; 
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceIn { 0% { transform: scale(0); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes countUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
+        @media (max-width: 768px) { 
+            .menu-toggle { display: flex; }
+            nav ul { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; flex-direction: column; padding: 1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+            nav ul.active { display: flex; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <nav class="container">
+            <div class="logo">Sparkle Clean</div>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
 
-<header class="container">
-  <a href="#" class="logo">Conext<span>Sol</span></a>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Cleaning Services</h1>
+                <p>Transform your home or office with our expert cleaning solutions. Eco-friendly products, trained professionals, and guaranteed satisfaction.</p>
+                <a href="#contact" class="btn">Get Free Quote Now</a>
+            </div>
+        </div>
+    </section>
 
-  <nav>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-    <ul id="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-    </ul>
-  </nav>
+    <section id="services">
+        <div class="container">
+            <h2>Our Cleaning Services</h2>
+            <p class="subtitle">Comprehensive cleaning solutions tailored to meet your specific needs with attention to every detail.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🧼</span>
+                    <h3>Deep Cleaning</h3>
+                    <p>Thorough cleaning of all surfaces, carpets, upholstery, and hard-to-reach areas for a truly spotless finish.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏠</span>
+                    <h3>Residential Cleaning</h3>
+                    <p>Regular maintenance cleaning for homes, apartments, and condos. Weekly, bi-weekly, or monthly schedules available.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏢</span>
+                    <h3>Commercial Cleaning</h3>
+                    <p>Professional office and business cleaning with minimal disruption. After-hours service available.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🪟</span>
+                    <h3>Window Cleaning</h3>
+                    <p>Streak-free window cleaning for residential and commercial properties. Interior and exterior services.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛋️</span>
+                    <h3>Upholstery Cleaning</h3>
+                    <p>Specialized cleaning for sofas, chairs, and fabrics using steam cleaning and extraction methods.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🚗</span>
+                    <h3>Move-In/Move-Out</h3>
+                    <p>Complete cleaning for empty properties during moves. Perfect condition guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <button id="openContactModal" class="contact-button">Contact</button>
-</header>
+    <section id="about">
+        <div class="container">
+            <h2>About Sparkle Clean</h2>
+            <p class="subtitle">15+ years of excellence in professional cleaning services across the region.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="5000">0</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="25000">0</span>
+                    <span class="stat-label">Spaces Cleaned</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="98">0</span>
+                    <span class="stat-label">5-Star Reviews</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
 
-<main>
+            <div class="about-content">
+                <div>
+                    <h3>Why Choose Us?</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">✓</span>
+                            Fully insured and bonded team
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">✓</span>
+                            Eco-friendly, non-toxic products
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">✓</span>
+                            Satisfaction guarantee
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">✓</span>
+                            Flexible scheduling
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-image"></div>
+            </div>
 
-<section class="hero">
-  <h1>Web Development & Automation Services in South Africa</h1>
-  <p>Professional websites, automation, and AI-ready solutions for businesses nationwide.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"Sparkle Clean transformed our office! The team was professional and the results were amazing. Highly recommend!"</p>
+                    <strong>- Sarah M., Office Manager</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Best cleaning service we've ever used. They pay attention to every detail and our home has never looked better."</p>
+                    <strong>- Michael R., Homeowner</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Reliable, friendly, and thorough. Perfect for our busy family schedule. 5 stars!"</p>
+                    <strong>- Lisa T., Parent</strong>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <button id="openContactModalHero" class="contact-button">Get In Touch</button>
+    <section id="contact">
+        <div class="container">
+            <h2>Ready for a Spotless Space?</h2>
+            <p class="subtitle" style="color: rgba(255,255,255,0.9);">Get your free quote today. Fill out the form below or chat with us instantly!</p>
+            
+            <!-- Netlify Form with Netlify Integration -->
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact" />
+                <div style="display: none;">
+                    <label>Don't fill this out: <input name="bot-field" /></label>
+                </div>
+                <input type="text" name="name" placeholder="Your Full Name" required />
+                <input type="email" name="email" placeholder="Your Email Address" required />
+                <input type="tel" name="phone" placeholder="Your Phone Number" />
+                <input type="text" name="service" placeholder="Service Needed (Deep Clean, Regular, etc.)" required />
+                <textarea name="message" rows="6" placeholder="Tell us about your cleaning requirements..." required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
 
-  <div class="social-links">
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-</section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sparkle Clean Services</h3>
+                    <p>Professional cleaning solutions for homes and businesses. Satisfaction guaranteed.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Deep Cleaning</a>
+                    <a href="#services">Residential</a>
+                    <a href="#services">Commercial</a>
+                    <a href="#services">Windows & Upholstery</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📧 info@sparkleclean.com</p>
+                    <p>📱 Available 24/7</p>
+                    <p>🕒 Mon-Sun, 6AM-10PM</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sparkle Clean Services. All rights reserved. | Designed for excellence.</p>
+            </div>
+        </div>
+    </footer>
 
-<section id="services" class="container">
-  <h2>Services</h2>
-  <div class="advantage-grid">
-    <div class="advantage-item">Web Development</div>
-    <div class="advantage-item">Automation & AI-Ready Systems</div>
-    <div class="advantage-item">Technical Consulting</div>
-  </div>
+    <!-- WhatsApp Integration -->
+    <a href="https://wa.me/+1234567890?text=Hi%20Sparkle%20Clean!%20I'd%20like%20a%20free%20quote%20for%20cleaning%20services.%20Please%20call%20me!" 
+       class="whatsapp-btn" target="_blank" rel="noopener">
+        <span>💬</span>
+    </a>
 
-  <p class="seo-text">
-    ConextSol proudly provides web development and automation services to startups and businesses across South Africa, delivering scalable digital solutions for both local and national brands.
-  </p>
-</section>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-<section id="projects" class="container">
-  <h2>Projects</h2>
-  <div class="projects-grid">
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                navMenu.classList.remove('active');
+            });
+        });
 
-    <div class="project-card">
-      <img src="https://via.placeholder.com/400x250" alt="Business website project developed by ConextSol in South Africa">
-      <h3>Business Website</h3>
-      <p>Responsive website with automation.</p>
-      <a href="#" target="_blank">View Live</a>
-    </div>
+        // Stats counter animation
+        const stats = document.querySelectorAll('.stat');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(number => {
+                        const target = parseInt(number.getAttribute('data-target'));
+                        let count = 0;
+                        const increment = target / 100;
+                        const timer = setInterval(() => {
+                            count += increment;
+                            if (count >= target) {
+                                number.textContent = target + (number.textContent.includes('%') ? '%' : '');
+                                clearInterval(timer);
+                            } else {
+                                number.textContent = Math.floor(count) + (number.textContent.includes('%') ? '%' : '');
+                            }
+                        }, 20);
+                    });
+                }
+            });
+        });
+        stats.forEach(stat => observer.observe(stat));
 
-    <div class="project-card">
-      <img src="https://via.placeholder.com/400x250" alt="AI chatbot system developed by ConextSol">
-      <h3>AI System</h3>
-      <p>Lead capture and customer engagement.</p>
-      <a href="#" target="_blank">View Live</a>
-    </div>
+        // Animate service cards on scroll
+        const cards = document.querySelectorAll('.service-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        });
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease';
+            cardObserver.observe(card);
+        });
 
-  </div>
-</section>
-
-<section id="reviews" class="reviews-section">
-  <h2>Client Reviews</h2>
-  <div class="carousel">
-    <div class="carousel-track">
-      <div class="review-box">⭐⭐⭐⭐⭐ Excellent service and fast delivery</div>
-      <div class="review-box">⭐⭐⭐⭐⭐ Very professional and reliable</div>
-      <div class="review-box">⭐⭐⭐⭐⭐ Highly recommended</div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- CONTACT MODAL -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span id="closeContactModal" class="close-btn">&times;</span>
-
-    <form name="contact" method="POST" data-netlify="true" action="/thank-you.html">
-      <input type="hidden" name="form-name" value="contact">
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email Address" required>
-      <textarea name="message" placeholder="Your message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-</div>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/27700000000" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- AI CHATBOT PLACEHOLDER (OPTION 1 – INACTIVE) -->
-<!--
-<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-    botId: "YOUR_BOT_ID",
-    composerPlaceholder: "Ask us anything..."
-  });
-</script>
--->
-
-<script src="script.js"></script>
-
-<!-- Botpress Chat Container -->
-<div id="webchat"></div>
-
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255,255,255,0.98)';
+                header.style.boxShadow = '0 5px 25px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255,255,255,0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
