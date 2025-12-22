@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Food | Rainfall Business Services</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+    <nav>
+        <img src="images/logo.jpeg" style="height: 40px;">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pest.html">Pest Control</a></li>
+            <li><a href="estates.html">Estates</a></li>
+            <li><a href="petfood.html">Pet Food</a></li>
+            <li><a href="household.html">Household</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1>Division 3: DogfoodPrograms</h1>
+            <p>Premium nutrition delivered to your door.</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <img src="images/puppy.jpg" class="card-img" alt="Puppy Food">
+                <div class="card-content">
+                    <h3>Puppy Growth Plan</h3>
+                    <p>Optimized for developing joints and immune systems.</p>
+                    <span class="price-tag">R450.00</span>
+                    <a href="https://wa.me/YOUR_NUMBER" class="btn">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/adult.jpg" class="card-img" alt="Adult Dog Food">
+                <div class="card-content">
+                    <h3>Adult Maintenance</h3>
+                    <p>Complete and balanced everyday nutrition.</p>
+                    <span class="price-tag">R580.00</span>
+                    <a href="https://wa.me/YOUR_NUMBER" class="btn">Order via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+</body>
+
+<footer style="background: #222; color: #fff; padding: 40px 5%; margin-top: 50px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left;">
+        <div>
+            <h3 style="color: var(--secondary);">Rainfall Business Services</h3>
+            <p>Quality service across all divisions.</p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="pest.html" style="color: #bbb; text-decoration: none;">Pest Control</a></li>
+                <li><a href="petfood.html" style="color: #bbb; text-decoration: none;">DogfoodPrograms</a></li>
+                <li><a href="contact.html" style="color: #bbb; text-decoration: none;">Support</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Connect With Us</h4>
+            <div class="social-links" style="display: flex; gap: 15px; margin-top: 10px;">
+                <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" title="WhatsApp">💬</a>
+                <a href="https://instagram.com/YOUR_HANDLE" target="_blank" title="Instagram">📸</a>
+                <a href="https://facebook.com/YOUR_PAGE" target="_blank" title="Facebook">📘</a>
+                <a href="https://tiktok.com/@YOUR_HANDLE" target="_blank" title="TikTok">🎵</a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 20px; font-size: 0.8rem; color: #888;">
+        &copy; 2025 Rainfall Business Services. All Rights Reserved.
+    </div>
+</footer>
+</html>
